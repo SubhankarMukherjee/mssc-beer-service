@@ -2,20 +2,20 @@ package com.connecttosubhankar.domain;
 
 import com.connecttosubhankar.web.model.BeerStyleEnum;
 import lombok.*;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 import org.hibernate.id.UUIDGenerator;
 import sun.util.resources.cldr.ne.TimeZoneNames_ne;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
+@Table(name = "beer")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,6 +26,7 @@ public class Beer {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID" ,strategy="org.hibernate.id.UUIDGenerator")
+    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(length = 36,updatable = false,nullable = false,columnDefinition = "varchar")
     private UUID id;
     @Version
