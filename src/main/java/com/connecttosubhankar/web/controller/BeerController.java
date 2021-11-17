@@ -23,6 +23,7 @@ public class BeerController {
 
     private static final Integer DEFAULT_PAGE_NUMBER=0;
     private static final Integer DEFAULT_PAGE_SIZE=5;
+    private static boolean DEAFULT_SHOW_INVENTORY=false;
 
     // Paging Supported list beer method
 
@@ -32,7 +33,8 @@ public class BeerController {
                                 @RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                 @RequestParam(value="pageSize", required=false) Integer pageSize,
                                 @RequestParam(value="beerName",required = false) String beerName,
-                                @RequestParam(value = "beerStyle",required =false) BeerStyleEnum beerStyle){
+                                @RequestParam(value = "beerStyle",required =false) BeerStyleEnum beerStyle,
+                                @RequestParam(value = "showInventoryOnHand",required =false) Boolean showInventoryOnHand){
     if(pageNumber ==null || pageNumber < 0)
     {
         pageNumber=DEFAULT_PAGE_NUMBER;
@@ -42,16 +44,28 @@ public class BeerController {
     pageSize=DEFAULT_PAGE_SIZE;
     }
 
-        BeerPagedList beerList = beerService.listBeer(beerName, beerStyle, PageRequest.of(pageNumber, pageSize));
+        if(showInventoryOnHand!=null)
+        {
+            if(showInventoryOnHand)
+            DEAFULT_SHOW_INVENTORY=true;
+        }
+
+        BeerPagedList beerList = beerService.listBeer(beerName, beerStyle, PageRequest.of(pageNumber, pageSize),DEAFULT_SHOW_INVENTORY);
         return new ResponseEntity<>(beerList,HttpStatus.OK);
     }
 
 
+
     @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID id)
+    public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID id,Boolean showInventoryOnHand)
     {
 
-return new ResponseEntity<>(beerService.findBeerById(id), HttpStatus.OK);
+        if(showInventoryOnHand!=null)
+                {
+                    if(showInventoryOnHand)
+            DEAFULT_SHOW_INVENTORY=true;
+        }
+return new ResponseEntity<>(beerService.findBeerById(id,DEAFULT_SHOW_INVENTORY), HttpStatus.OK);
     }
 
 

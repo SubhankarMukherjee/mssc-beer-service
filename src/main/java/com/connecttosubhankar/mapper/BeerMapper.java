@@ -10,7 +10,8 @@ import org.mapstruct.Mapper;
 @DecoratedWith(BeerMapperDecorator.class)
 public interface BeerMapper {
 
-    BeerDto convertBeerToBeerDTO(Beer beer);
+    BeerDto convertBeerToBeerDTOWithInventory(Beer beer);
+    BeerDto convertBeerToBeerDTOWithoutInventory(Beer beer);
 
     Beer covertBeerDTOToBeer(BeerDto beerDTOV2);
 }

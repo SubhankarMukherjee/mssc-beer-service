@@ -25,7 +25,7 @@ public class BeerServiceImpl implements BeerService{
 
 
     @Override
-    public BeerPagedList listBeer(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest) {
+    public BeerPagedList listBeer(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest,Boolean showInventory) {
 
         BeerPagedList beerPagedList;
         Page<Beer> beerPage;
@@ -47,25 +47,41 @@ public class BeerServiceImpl implements BeerService{
             beerPage=beerRepository.findAll(pageRequest);
         }
 
-        beerPagedList= new BeerPagedList(beerPage.getContent()
-                .stream()
-                .map(beerMapper::convertBeerToBeerDTO)
-                .collect(Collectors.toList())
-                ,
-                PageRequest.of(beerPage.getPageable().getPageNumber(),beerPage.getPageable().getPageSize()),
-                        beerPage.getTotalElements());
-        return beerPagedList;
+if(showInventory)
+{
+    beerPagedList = new BeerPagedList(beerPage.getContent()
+            .stream()
+            .map(beerMapper::convertBeerToBeerDTOWithInventory)
+            .collect(Collectors.toList())
+            ,
+            PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
+            beerPage.getTotalElements());
+    return beerPagedList;
+}
+else {
+    beerPagedList = new BeerPagedList(beerPage.getContent()
+            .stream()
+            .map(beerMapper::convertBeerToBeerDTOWithoutInventory)
+            .collect(Collectors.toList())
+            ,
+            PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
+            beerPage.getTotalElements());
+    return beerPagedList;
+}
     }
 
     @Override
-    public BeerDto findBeerById(UUID id) {
-        return beerMapper.convertBeerToBeerDTO(beerRepository.findById(id).orElseThrow(NotFoundException::new));
+    public BeerDto findBeerById(UUID id,Boolean showInventory) {
+        if(showInventory)
+        return beerMapper.convertBeerToBeerDTOWithInventory(beerRepository.findById(id).orElseThrow(NotFoundException::new));
+        else
+            return  beerMapper.convertBeerToBeerDTOWithoutInventory(beerRepository.findById(id).orElseThrow(NotFoundException::new));
     }
 
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {
         Beer savedBeer = beerRepository.save(beerMapper.covertBeerDTOToBeer(beerDto));
-        return beerMapper.convertBeerToBeerDTO(savedBeer);
+        return beerMapper.convertBeerToBeerDTOWithInventory(savedBeer);
     }
 
     @Override
@@ -75,7 +91,7 @@ public class BeerServiceImpl implements BeerService{
             BeerDto beerDtoTobeSet=beerDto;
             beerDtoTobeSet.setId(getBeer.getId());
         Beer savedBeer = beerRepository.save(beerMapper.covertBeerDTOToBeer(beerDtoTobeSet));
-        return beerMapper.convertBeerToBeerDTO(savedBeer);
+        return beerMapper.convertBeerToBeerDTOWithInventory(savedBeer);
 
     }
 
