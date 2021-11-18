@@ -8,11 +8,13 @@ import com.connecttosubhankar.web.model.BeerDto;
 import com.connecttosubhankar.web.model.BeerPagedList;
 import com.connecttosubhankar.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -23,10 +25,11 @@ public class BeerServiceImpl implements BeerService{
 
     private final BeerMapper beerMapper;
 
-
+    @Cacheable(cacheNames="beerListCache" ,condition = "#showInventory == false")
     @Override
     public BeerPagedList listBeer(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest,Boolean showInventory) {
 
+        System.out.println("This is called");
         BeerPagedList beerPagedList;
         Page<Beer> beerPage;
 
@@ -70,6 +73,16 @@ else {
 }
     }
 
+    @Cacheable(cacheNames="beerUpcCache")
+    @Override
+    public BeerDto findBeerByUPC(String upc) {
+        Beer beerByUpc = beerRepository.findAllByUpc(upc);
+
+        return beerMapper.convertBeerToBeerDTOWithoutInventory(beerByUpc);
+
+    }
+
+    @Cacheable(cacheNames="beerCache" ,key="#beerId" ,condition = "#showInventory == false")
     @Override
     public BeerDto findBeerById(UUID id,Boolean showInventory) {
         if(showInventory)

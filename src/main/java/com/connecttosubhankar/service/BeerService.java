@@ -5,6 +5,7 @@ import com.connecttosubhankar.web.model.BeerPagedList;
 import com.connecttosubhankar.web.model.BeerStyleEnum;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface BeerService {
@@ -17,4 +18,6 @@ public interface BeerService {
     void deleteBeerById(UUID id);
 
     BeerPagedList listBeer(String beerName, BeerStyleEnum beerStyle, PageRequest of,Boolean showInventory);
+
+    BeerDto findBeerByUPC(String upc);
 }

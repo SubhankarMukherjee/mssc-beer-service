@@ -5,6 +5,7 @@ import com.connecttosubhankar.web.model.BeerDto;
 import com.connecttosubhankar.web.model.BeerPagedList;
 import com.connecttosubhankar.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v1")
 public class BeerController {
 
     private final BeerService beerService;   // with lombok Required arg annottaion, andfinal it wills
@@ -27,7 +28,8 @@ public class BeerController {
 
     // Paging Supported list beer method
 
-    @GetMapping(produces ={"application/Json"})
+
+    @GetMapping(produces ={"application/Json"},path="/beer")
     public ResponseEntity<BeerPagedList> listBeers(
 
                                 @RequestParam(value = "pageNumber", required = false) Integer pageNumber,
@@ -56,7 +58,7 @@ public class BeerController {
 
 
 
-    @GetMapping("/{beerId}")
+    @GetMapping("/beer/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID id,Boolean showInventoryOnHand)
     {
 
@@ -68,22 +70,30 @@ public class BeerController {
 return new ResponseEntity<>(beerService.findBeerById(id,DEAFULT_SHOW_INVENTORY), HttpStatus.OK);
     }
 
+    @GetMapping("/beerUpc/{upc}")
+    public ResponseEntity<BeerDto> getBeerByUPC(@PathVariable("upc") String upc)
+    {
 
-    @PostMapping
+
+        return new ResponseEntity<>(beerService.findBeerByUPC(upc), HttpStatus.OK);
+    }
+
+
+    @PostMapping("/beer")
     public ResponseEntity<BeerDto> SaveNewBeer(@Valid @RequestBody BeerDto beerDto)
     {
 
         return new ResponseEntity( beerService.saveNewBeer(beerDto),HttpStatus.CREATED);
     }
 
-    @PutMapping("/{beerId}")
+    @PutMapping("/beer/{beerId}")
     public ResponseEntity<BeerDto> updateBeer(@PathVariable("beerId") UUID id,@Valid @RequestBody BeerDto beerDto)
     {
 
         return new ResponseEntity(beerService.updateBeer(id,beerDto),HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{beerId}")
+    @DeleteMapping("/beer/{beerId}")
     public ResponseEntity<BeerDto> DeleteById(@PathVariable("beerId") UUID id)
     {
         beerService.deleteBeerById(id);
