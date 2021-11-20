@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-//@Component
+@Component
 public class BeerLoader implements CommandLineRunner {
 //command line runner enables this to run while spring context starts up
 
@@ -27,7 +27,8 @@ public class BeerLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        loadBeerObjects();
+        if(beerRepository.count() == 0)
+            loadBeerObjects();
     }
 
     private void loadBeerObjects() {
