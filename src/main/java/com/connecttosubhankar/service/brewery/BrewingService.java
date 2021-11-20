@@ -1,8 +1,8 @@
-package com.connecttosubhankar.service;
+package com.connecttosubhankar.service.brewery;
 
 import com.connecttosubhankar.config.JmsConfigConvert;
 import com.connecttosubhankar.domain.Beer;
-import com.connecttosubhankar.event.BeerEvent;
+import common.events.BrewBeerEvent;
 import com.connecttosubhankar.mapper.BeerMapper;
 import com.connecttosubhankar.repositories.BeerRepository;
 import com.connecttosubhankar.service.inventory.BeerInventoryService;
@@ -24,18 +24,22 @@ public class BrewingService {
     private final JmsTemplate jmsTemplate;
     private final BeerMapper beerMapper;
 
-    @Scheduled(fixedRate=5000)  // At every 5 seconds
-    void checkForLowQuantity()
+    @Scheduled(fixedRate = 5000)  // At every 2 seconds
+    public void checkForLowQuantity()
     {
+        System.out.println("Brewing service started every 5 second");
         List<Beer> beers = beerRepository.findAll();
+        System.out.println(beers.size());
         beers.forEach(beer -> {
+
             Integer invenQOH = beerInventoryService.getOnHandInventory(beer.getId());
+
             log.debug("Inventory on hand:"+ invenQOH);
             log.debug("Min on hand is :"+ beer.getMinOnHand());
             if(beer.getMinOnHand()>=invenQOH)
             {
                 log.debug("Brewing request sending... Need  for it");
-                jmsTemplate.convertAndSend(JmsConfigConvert.BFREWING_REQUEST_QUEUE,new BeerEvent(beerMapper.convertBeerToBeerDTOWithInventory(beer)));
+                jmsTemplate.convertAndSend(JmsConfigConvert.BFREWING_REQUEST_QUEUE,new BrewBeerEvent(beerMapper.convertBeerToBeerDTOWithoutInventory(beer)));
             }
 
         }
