@@ -11,8 +11,8 @@ import org.springframework.jms.support.converter.MessageType;
 
 public class JmsConfigConvert {
 
-    public static final String MY_QUEUE= "hello-world";
-    public static final String MY_SEND_RCV_QUEUE="send-receive";
+    public static final String BFREWING_REQUEST_QUEUE= "brewing-request";
+    //public static final String MY_SEND_RCV_QUEUE="send-receive";
     @Bean
     public MessageConverter messageConverter()
     {
