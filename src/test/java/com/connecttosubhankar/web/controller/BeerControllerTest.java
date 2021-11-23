@@ -2,12 +2,10 @@ package com.connecttosubhankar.web.controller;
 
 import com.connecttosubhankar.bootstrap.BeerLoader;
 import com.connecttosubhankar.service.BeerService;
-import com.connecttosubhankar.web.model.BeerDto;
-import com.connecttosubhankar.web.model.BeerStyleEnum;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.comon.brewery.model.BeerDto;
+import com.comon.brewery.model.BeerStyleEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,13 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BeerController.class)

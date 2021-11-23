@@ -1,4 +1,4 @@
-package com.connecttosubhankar.web.model;
+package com.comon.brewery.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

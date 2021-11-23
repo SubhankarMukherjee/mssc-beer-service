@@ -1,18 +1,16 @@
 package com.connecttosubhankar.web.controller;
 
 import com.connecttosubhankar.service.BeerService;
-import com.connecttosubhankar.web.model.BeerDto;
-import com.connecttosubhankar.web.model.BeerPagedList;
-import com.connecttosubhankar.web.model.BeerStyleEnum;
+import com.comon.brewery.model.BeerDto;
+import com.comon.brewery.model.BeerPagedList;
+import com.comon.brewery.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 @RequiredArgsConstructor
 @RestController

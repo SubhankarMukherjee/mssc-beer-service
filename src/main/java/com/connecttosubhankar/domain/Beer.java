@@ -1,17 +1,13 @@
 package com.connecttosubhankar.domain;
 
-import com.connecttosubhankar.web.model.BeerStyleEnum;
 import lombok.*;
 import org.hibernate.annotations.*;
-import org.hibernate.id.UUIDGenerator;
-import sun.util.resources.cldr.ne.TimeZoneNames_ne;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity

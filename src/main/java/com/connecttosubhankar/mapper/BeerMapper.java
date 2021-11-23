@@ -2,7 +2,7 @@ package com.connecttosubhankar.mapper;
 
 
 import com.connecttosubhankar.domain.Beer;
-import com.connecttosubhankar.web.model.BeerDto;
+import com.comon.brewery.model.BeerDto;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 

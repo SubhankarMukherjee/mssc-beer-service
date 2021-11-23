@@ -1,4 +1,4 @@
-package com.connecttosubhankar.web.model;
+package com.comon.brewery.model;
 
 public enum BeerStyleEnum {
 

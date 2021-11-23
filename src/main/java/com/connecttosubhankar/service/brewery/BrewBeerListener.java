@@ -2,10 +2,10 @@ package com.connecttosubhankar.service.brewery;
 
 import com.connecttosubhankar.config.JmsConfigConvert;
 import com.connecttosubhankar.domain.Beer;
-import common.events.BrewBeerEvent;
-import common.events.NewInventoryEvent;
+import com.comon.brewery.model.events.BrewBeerEvent;
+import com.comon.brewery.model.events.NewInventoryEvent;
 import com.connecttosubhankar.repositories.BeerRepository;
-import com.connecttosubhankar.web.model.BeerDto;
+import com.comon.brewery.model.BeerDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;

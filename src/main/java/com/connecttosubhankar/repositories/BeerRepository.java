@@ -1,7 +1,7 @@
 package com.connecttosubhankar.repositories;
 
 import com.connecttosubhankar.domain.Beer;
-import com.connecttosubhankar.web.model.BeerStyleEnum;
+import com.comon.brewery.model.BeerStyleEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;

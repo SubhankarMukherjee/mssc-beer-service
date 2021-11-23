@@ -1,6 +1,6 @@
-package common.events;
+package com.comon.brewery.model.events;
 
-import com.connecttosubhankar.web.model.BeerDto;
+import com.comon.brewery.model.BeerDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

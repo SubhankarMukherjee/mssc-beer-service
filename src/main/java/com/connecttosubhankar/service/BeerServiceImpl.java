@@ -4,9 +4,9 @@ import com.connecttosubhankar.domain.Beer;
 import com.connecttosubhankar.mapper.BeerMapper;
 import com.connecttosubhankar.repositories.BeerRepository;
 import com.connecttosubhankar.web.exception.NotFoundException;
-import com.connecttosubhankar.web.model.BeerDto;
-import com.connecttosubhankar.web.model.BeerPagedList;
-import com.connecttosubhankar.web.model.BeerStyleEnum;
+import com.comon.brewery.model.BeerDto;
+import com.comon.brewery.model.BeerPagedList;
+import com.comon.brewery.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

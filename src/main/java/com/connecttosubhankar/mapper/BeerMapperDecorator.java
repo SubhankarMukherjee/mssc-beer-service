@@ -2,7 +2,7 @@ package com.connecttosubhankar.mapper;
 
 import com.connecttosubhankar.domain.Beer;
 import com.connecttosubhankar.service.inventory.BeerInventoryService;
-import com.connecttosubhankar.web.model.BeerDto;
+import com.comon.brewery.model.BeerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BeerMapperDecorator implements BeerMapper {

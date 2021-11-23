@@ -1,11 +1,10 @@
 package com.connecttosubhankar.service;
 
-import com.connecttosubhankar.web.model.BeerDto;
-import com.connecttosubhankar.web.model.BeerPagedList;
-import com.connecttosubhankar.web.model.BeerStyleEnum;
+import com.comon.brewery.model.BeerDto;
+import com.comon.brewery.model.BeerPagedList;
+import com.comon.brewery.model.BeerStyleEnum;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface BeerService {
