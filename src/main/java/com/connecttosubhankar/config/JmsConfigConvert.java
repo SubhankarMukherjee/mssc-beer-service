@@ -13,6 +13,11 @@ public class JmsConfigConvert {
 
     public static final String BFREWING_REQUEST_QUEUE= "brewing-request";
     public static final String INVENTORY_EVENT_QUEUE= "inventory_queue";
+    public static final String VALIDATE_ORDER_QUEUE = "validate-order";
+    public static final String VALIDATE_ORDER_RESPONSE_QUEUE="validate-result";
+    public static final String ALLOCATE_ORDER_QUEUE="allocate-order";
+    public static final String ALLOCATE_ORDER_RESPONSE_QUEUE="allocate-result";
+
     //public static final String MY_SEND_RCV_QUEUE="send-receive";
     @Bean
     public MessageConverter messageConverter(ObjectMapper objectMapper)
