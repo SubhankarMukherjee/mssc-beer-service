@@ -15,8 +15,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.comon.brewery.model.events;
+package com.comon.brewery.model;
 
+import com.comon.brewery.model.event.BeerOrderLineDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,6 @@ public class BeerOrderDto {
     private UUID customerId;
     private String customerRef;
     private List<BeerOrderLineDto> beerOrderLines;
-    private BeerOrderStatusEnum orderStatus;
+    private String orderStatus;
     private String orderStatusCallbackUrl;
 }

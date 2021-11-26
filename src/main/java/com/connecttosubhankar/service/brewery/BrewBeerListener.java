@@ -2,8 +2,8 @@ package com.connecttosubhankar.service.brewery;
 
 import com.connecttosubhankar.config.JmsConfigConvert;
 import com.connecttosubhankar.domain.Beer;
-import com.comon.brewery.model.events.BrewBeerEvent;
-import com.comon.brewery.model.events.NewInventoryEvent;
+import com.comon.brewery.model.event.BrewBeerEvent;
+import com.comon.brewery.model.event.NewInventoryEvent;
 import com.connecttosubhankar.repositories.BeerRepository;
 import com.comon.brewery.model.BeerDto;
 import lombok.RequiredArgsConstructor;

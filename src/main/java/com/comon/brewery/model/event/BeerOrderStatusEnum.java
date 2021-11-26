@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.comon.brewery.model.events;
+package com.comon.brewery.model.event;
 
 public enum BeerOrderStatusEnum {
     NEW, VALIDATED, VALIDATION_PENDING, VALIDATION_EXCEPTION,

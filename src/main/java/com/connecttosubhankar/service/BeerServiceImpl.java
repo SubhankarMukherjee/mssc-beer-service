@@ -81,9 +81,11 @@ else {
 
     }
 
-    @Cacheable(cacheNames="beerCache" ,key="#beerId" ,condition = "#showInventory == false")
+    @Cacheable(cacheNames="beerCache" ,key="#id" ,condition = "#showInventory == false")
     @Override
     public BeerDto findBeerById(UUID id,Boolean showInventory) {
+       // System.out.println("Service BeerId:"+ id);
+        //System.out.println("Service showInventoryOnHand:"+showInventory);
         if(showInventory)
         return beerMapper.convertBeerToBeerDTOWithInventory(beerRepository.findById(id).orElseThrow(NotFoundException::new));
         else

@@ -1,5 +1,6 @@
-package com.comon.brewery.model.events;
+package com.comon.brewery.model.event;
 
+import com.comon.brewery.model.BeerOrderDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

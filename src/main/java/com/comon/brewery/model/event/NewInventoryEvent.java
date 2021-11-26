@@ -1,4 +1,4 @@
-package com.comon.brewery.model.events;
+package com.comon.brewery.model.event;
 
 
 import com.comon.brewery.model.BeerDto;

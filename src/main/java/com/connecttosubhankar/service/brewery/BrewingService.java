@@ -2,7 +2,7 @@ package com.connecttosubhankar.service.brewery;
 
 import com.connecttosubhankar.config.JmsConfigConvert;
 import com.connecttosubhankar.domain.Beer;
-import com.comon.brewery.model.events.BrewBeerEvent;
+import com.comon.brewery.model.event.BrewBeerEvent;
 import com.connecttosubhankar.mapper.BeerMapper;
 import com.connecttosubhankar.repositories.BeerRepository;
 import com.connecttosubhankar.service.inventory.BeerInventoryService;

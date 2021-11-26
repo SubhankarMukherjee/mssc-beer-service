@@ -1,6 +1,6 @@
 package com.connecttosubhankar.service.order;
 
-import com.comon.brewery.model.events.BeerOrderDto;
+import com.comon.brewery.model.BeerOrderDto;
 import com.connecttosubhankar.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

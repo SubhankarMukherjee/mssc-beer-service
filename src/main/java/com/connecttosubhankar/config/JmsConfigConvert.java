@@ -7,7 +7,6 @@ import org.springframework.jms.support.converter.MappingJackson2MessageConverter
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 
-
 @Configuration
 public class JmsConfigConvert {
 
@@ -19,13 +18,12 @@ public class JmsConfigConvert {
     public static final String ALLOCATE_ORDER_RESPONSE_QUEUE="allocate-result";
 
     //public static final String MY_SEND_RCV_QUEUE="send-receive";
-    @Bean
-    public MessageConverter messageConverter(ObjectMapper objectMapper)
-    {
+    @Bean // Serialize message content to json using TextMessage
+    public MessageConverter jacksonJmsMessageConverter(ObjectMapper objectMapper) {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_type");
-        converter.setObjectMapper(objectMapper);  // set spring boot managed instance of object mapper
+        converter.setObjectMapper(objectMapper);
         return converter;
     }
 
