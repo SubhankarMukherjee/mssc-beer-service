@@ -5,6 +5,7 @@ import com.connecttosubhankar.service.inventory.model.BeerInventoryDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +16,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Profile("non-discovery")
 @Slf4j
 @Component
 @ConfigurationProperties(value = "sfg.brewery", ignoreUnknownFields = false)
 public class BeerInventoryServiceImpl implements BeerInventoryService{
 
-    private static final String INVENTORY_PATH="/api/v1/beer/{beerId}/inventory";
+    public static final String INVENTORY_PATH="/api/v1/beer/{beerId}/inventory";
     private final RestTemplate restTemplate;
 
     private  String BEER_INVENTORY_SERVICE_HOST;
